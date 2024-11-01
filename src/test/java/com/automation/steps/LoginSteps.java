@@ -4,6 +4,7 @@ import com.automation.core.Context;
 import com.automation.core.Manager;
 import com.automation.pages.LoginPage;
 import com.automation.pages.ProductsPage;
+import com.automation.utils.Constants;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -40,7 +41,7 @@ public class LoginSteps extends Context {
     }
     @Then("user should be redirected to products page")
     public void user_should_be_redirected_to_products_page() {
-        Assert.assertEquals(productsPage.getTitle(), "Swag Labs");
+        Assert.assertEquals(productsPage.getTitle(), Constants.TITLE);
     }
 
     @Given("Log into saucedemo {string} with valid credentials")
@@ -63,7 +64,7 @@ public class LoginSteps extends Context {
     @Then("user should be notified with invalid login message")
     public void user_should_be_notified_with_invalid_login_message() {
         log.info("Invalid login message should be displayed");
-        Assert.assertTrue(loginPage.getInvalidLoginMessage().contains("Username and password do not match any user in this service"));
+        Assert.assertTrue(loginPage.getInvalidLoginMessage().contains(Constants.INVALID_LOGIN_MESSAGE));
     }
 
 

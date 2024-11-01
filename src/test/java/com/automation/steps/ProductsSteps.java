@@ -13,6 +13,9 @@ import org.testng.Assert;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.automation.utils.Constants.PRICES;
+import static com.automation.utils.Constants.PRODUCTS;
+
 public class ProductsSteps extends Context {
 
     private static final Logger log = LoggerFactory.getLogger(ProductsSteps.class);
@@ -29,20 +32,20 @@ public class ProductsSteps extends Context {
         List<String> prices = new ArrayList<>();
         products.add(productsPage.getItems().get(0).findElement(By.className("inventory_item_name")).getText());
         prices.add(productsPage.getItems().get(0).findElement(By.className("inventory_item_price")).getText());
-        stash("products", products);
-        stash("prices", prices);
-        log.info("The selected product: " + getTestStash().get("products"));
+        stash(PRODUCTS, products);
+        stash(PRICES, prices);
+        log.info("The selected product: " + getTestStash().get(PRODUCTS));
         productsPage.getItems().get(0).findElement(By.className("btn_inventory")).click();
     }
 
     @When("second product added to the cart")
     public void second_product_added_to_the_cart() {
-        List<String> products = (List<String>) getTestStash().get("products");
-        List<String> prices = (List<String>) getTestStash().get("prices");
+        List<String> products = (List<String>) getTestStash().get(PRODUCTS);
+        List<String> prices = (List<String>) getTestStash().get(PRICES);
         products.add(productsPage.getItems().get(1).findElement(By.className("inventory_item_name")).getText());
         prices.add(productsPage.getItems().get(1).findElement(By.className("inventory_item_price")).getText());
-        stash("products", products);
-        stash("prices", prices);
+        stash(PRODUCTS, products);
+        stash(PRICES, prices);
 
         productsPage.getItems().get(1).findElement(By.className("btn_inventory")).click();
     }

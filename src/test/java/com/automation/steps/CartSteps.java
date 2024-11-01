@@ -9,6 +9,9 @@ import org.testng.Assert;
 
 import java.util.List;
 
+import static com.automation.utils.Constants.PRICES;
+import static com.automation.utils.Constants.PRODUCTS;
+
 public class CartSteps extends Context {
 
     public CartSteps(Manager manager) {
@@ -18,8 +21,8 @@ public class CartSteps extends Context {
 
     @Then("the cart page should show the selected items")
     public void the_cart_page_should_show_the_selected_items() {
-        List<String> products = (List<String>)getTestStash().get("products");
-        List<String> prices = (List<String>)getTestStash().get("prices");
+        List<String> products = (List<String>)getTestStash().get(PRODUCTS);
+        List<String> prices = (List<String>)getTestStash().get(PRICES);
         Assert.assertEquals(cartPage.getProductsSize(), products.size());
         Assert.assertEquals(cartPage.getProductNames(), products);
         Assert.assertEquals(cartPage.getProductPrices(), prices);

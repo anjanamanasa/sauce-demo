@@ -48,7 +48,7 @@ public class Hooks extends Context {
 
   @After
   public void after() {
-//    getDriver().quit();
+    getDriver().quit();
     log.info("Quit driver");
   }
 
