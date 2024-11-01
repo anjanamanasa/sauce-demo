@@ -27,11 +27,11 @@ public class LoginSteps extends Context {
         manager.getDriver().get(url);
     }
 
-    @When("valid username and password supplied")
-    public void valid_username_and_password_supplied() {
-        log.info("User logged in with valid username and password");
-        loginPage.enterUserName("standard_user");
-        loginPage.enterPassword("secret_sauce");
+    @When("valid username {string} and password {string} supplied")
+    public void valid_username_and_password_supplied(String username, String password) {
+        log.info("User logged in with valid username and password"+ username);
+        loginPage.enterUserName(username);
+        loginPage.enterPassword(password);
 
     }
     @When("click on the login button")
@@ -52,10 +52,12 @@ public class LoginSteps extends Context {
         log.info("Valid user logged in");
     }
 
-    @When("invalid username and password supplied")
-    public void invalid_username_and_password_supplied() {
-        loginPage.enterUserName("locked_out_user1");
-        loginPage.enterPassword("secret_sauce");
+    @When("invalid username {string} and password {string} supplied")
+    public void invalid_username_and_password_supplied(String username, String password) {
+        log.info("User logged in with valid username and password"+ username);
+        loginPage.enterUserName(username);
+        loginPage.enterPassword(password);
+
     }
 
     @Then("user should be notified with invalid login message")

@@ -42,13 +42,13 @@ public class Hooks extends Context {
   @AfterStep
   public void afterStep(Scenario scenario) {
     byte[] screenshot = getDriver().getScreenshotAs(OutputType.BYTES);
-    scenario.attach(screenshot, "image/png", scenario.getName());
+    scenario.attach(screenshot, "image/png", scenario.getId());
     log.info("End of step..............................");
   }
 
   @After
   public void after() {
-    getDriver().quit();
+//    getDriver().quit();
     log.info("Quit driver");
   }
 

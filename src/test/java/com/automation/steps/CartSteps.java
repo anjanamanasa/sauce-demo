@@ -7,6 +7,8 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.testng.Assert;
 
+import java.util.List;
+
 public class CartSteps extends Context {
 
     public CartSteps(Manager manager) {
@@ -14,11 +16,15 @@ public class CartSteps extends Context {
     }
     CartPage cartPage = new CartPage(getDriver());
 
-    @Then("the cart page should show the selected item")
-    public void the_cart_page_should_show_the_selected_item() {
-        Assert.assertEquals(cartPage.getProductName(), getTestStash().get("product"));
-        Assert.assertEquals("$"+cartPage.getProductPrice(), getTestStash().get("price"));
+    @Then("the cart page should show the selected items")
+    public void the_cart_page_should_show_the_selected_items() {
+        List<String> products = (List<String>)getTestStash().get("products");
+        List<String> prices = (List<String>)getTestStash().get("prices");
+        Assert.assertEquals(cartPage.getProductsSize(), products.size());
+        Assert.assertEquals(cartPage.getProductNames(), products);
+        Assert.assertEquals(cartPage.getProductPrices(), prices);
     }
+
 
     @When("click on the checkout button")
     public void click_on_the_checkout_button() {

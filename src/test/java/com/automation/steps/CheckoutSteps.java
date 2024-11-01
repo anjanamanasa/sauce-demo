@@ -5,9 +5,13 @@ import com.automation.core.Manager;
 import com.automation.pages.CheckoutPage;
 import com.automation.utils.Constants;
 import io.cucumber.java.en.Then;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 
 public class CheckoutSteps extends Context {
+
+    private static final Logger log = LoggerFactory.getLogger(CheckoutSteps.class);
 
     CheckoutPage checkoutPage = new CheckoutPage(getDriver());
     public CheckoutSteps(Manager manager) {
@@ -16,12 +20,14 @@ public class CheckoutSteps extends Context {
 
     @Then("supply {string} as firstName and {string} as lastName")
     public void supply_as_first_name_and_as_last_name(String fName, String lName) {
+        log.info("supply first name and last name");
         checkoutPage.sendFirstName(fName);
         checkoutPage.sendLastName(lName);
     }
 
     @Then("supply {string} as postCode")
     public void supply_as_post_code(String postCode) {
+        log.info("supply post code: "+postCode);
         checkoutPage.sendPostCode(postCode);
     }
 
